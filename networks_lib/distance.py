@@ -14,20 +14,20 @@ from collections import deque
 def bfs_distance(mat):
     num_vertices = mat.shape[0]
     dist = np.full((num_vertices, num_vertices), np.inf)
-    visited = np.zeros(num_vertices)
+    visited = np.zeros([num_vertices, num_vertices])
     q = deque()
 
     for u in range(num_vertices):
         q.append((u, 0))
         while len(q) != 0:
             v = q.pop()
-            visited[v[0]] = 1
-            dist[u, v[0]] = v[1]
+            visited[u, v[0]], visited[v[0], u] = (1, 1)
+            dist[u, v[0]], dist[v[0], u] = (v[1], v[1])
             v_neighbors = np.where(mat[v[0], :] > 0)[0]
             for i in range(len(v_neighbors)):
-                if visited[v_neighbors[i]] == 0:
+                if visited[u, v_neighbors[i]] == 0:
                     q.append((v_neighbors[i], v[1]+1))
-                    visited[v_neighbors[i]] = 1
+                    visited[u, v_neighbors[i]], visited[v_neighbors[i], u] = (1, 1)
 
     return dist
 
