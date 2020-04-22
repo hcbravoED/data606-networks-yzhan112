@@ -17,7 +17,7 @@ def bfs_distance(mat):
     q = deque()
 
     for u in range(num_vertices):
-        visited = np.zeros([num_vertices, num_vertices])
+        visited = np.zeros(num_vertices)
         q.append((u, 0))
         visited[u] = 1
         while len(q) != 0:
@@ -30,7 +30,7 @@ def bfs_distance(mat):
             v_neighbors = np.where(mat[v[0], :] > 0)[0]
             print(f'v_neighbors: {v_neighbors}')
             for i in range(len(v_neighbors)):
-                if visited[v_neighbors[i]] == 0:
+                if visited[v_neighbors[i] == 0:
                     q.append((v_neighbors[i], v[1]+1))
                     print(f'Now {q}')
                     visited[v_neighbors[i]] = 1
