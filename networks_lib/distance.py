@@ -21,11 +21,12 @@ def bfs_distance(mat):
         q.append((u, 0))
         while len(q) != 0:
             v = q.pop()
-            print(v)
+            print(f'pop_v {v}')
             if visited[u, v[0]] == 0:
                 visited[u, v[0]], visited[v[0], u] = (1, 1)
                 dist[u, v[0]], dist[v[0], u] = (v[1], v[1])
                 v_neighbors = np.where(mat[v[0], :] > 0)[0]
+                print(f'v_neighbors: {v_neighbors}')
                 for i in range(len(v_neighbors)):
                     if visited[u, v_neighbors[i]] == 0:
                         q.append((v_neighbors[i], v[1]+1))
