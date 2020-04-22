@@ -4,7 +4,7 @@ from igraph import *
 ## Return igraph object for the toy graph example
 def get_toy_graph():
     mat = get_toy_mat()
-    g = Graph.Adjacency(mat.tolist(), mode=ADJ_UNDIRECTED)
+    g = Graph.Adjacency((mat > 0).tolist(), mode=ADJ_UNDIRECTED)
     g.vs["label"] = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
     return g
 
@@ -17,7 +17,7 @@ def get_toy_mat():
                     [0, 0, 0, 1, 0, 0, 1],
                     [0, 0, 0, 1, 0, 0, 1],
                     [0, 0, 0, 1, 1, 1, 0]])
-    print((mat > 0).tolist())
+    #print((mat > 0).tolist())
     return mat
 
 ## Plot example toy graph
