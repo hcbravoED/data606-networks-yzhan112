@@ -27,6 +27,7 @@ def bfs_distance(mat):
             for i in range(len(v_neighbors)):
                 if visited[v_neighbors[i]] == 0:
                     q.append((v_neighbors[i], v[1]+1))
+                    visited[v_neighbors[i]] = 1
 
     return dist
 
