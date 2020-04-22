@@ -18,7 +18,7 @@ def bfs_distance(mat):
     q = deque()
 
     for u in range(num_vertices):
-        q.append(u, 0)
+        q.append((u, 0))
         while len(q) != 0:
             v = q.pop()
             visited[v[0]] = 1
