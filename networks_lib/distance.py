@@ -32,6 +32,7 @@ def bfs_distance(mat):
                     q.append((v_neighbors[i], v[1]+1))
                     print(f'q is {q}')
                     visited[u, v_neighbors[i]], visited[v_neighbors[i], u] = (1, 1)
+                    print(f'visited mat is {visited}')
 
     return dist
 
