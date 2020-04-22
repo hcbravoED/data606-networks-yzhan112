@@ -21,6 +21,7 @@ def bfs_distance(mat):
         q.append((u, 0))
         while len(q) != 0:
             v = q.pop()
+            print(v)
             if visited[u, v[0]] == 0:
                 visited[u, v[0]], visited[v[0], u] = (1, 1)
                 dist[u, v[0]], dist[v[0], u] = (v[1], v[1])
