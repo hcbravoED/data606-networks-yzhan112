@@ -26,12 +26,13 @@ def bfs_distance(mat):
             #if visited[u, v[0]] == 0:
             #visited[u, v[0]], visited[v[0], u] = (1, 1)
             dist[u, v[0]], dist[v[0], u] = (v[1], v[1])
+            print(f'distance mat is {dist}')
             v_neighbors = np.where(mat[v[0], :] > 0)[0]
             print(f'v_neighbors: {v_neighbors}')
             for i in range(len(v_neighbors)):
                 if visited[u, v_neighbors[i]] == 0:
                     q.append((v_neighbors[i], v[1]+1))
-                    print(f'q is {q}')
+                    print(f'Now {q}')
                     visited[u, v_neighbors[i]], visited[v_neighbors[i], u] = (1, 1)
                     print(f'visited mat is {visited}')
 
