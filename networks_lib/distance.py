@@ -56,12 +56,12 @@ def get_components(mat):
     components = []
 
     while not any(available):
-        for u in range(len(num_vertices)):
+        for u in range(num_vertices):
             if available[u] == False:
                 component = [u]
                 available[u] = True
                 print(f'u is {u})')
-                for v in range(u+1, len(num_verices)):
+                for v in range(u+1, num_verices):
                     if dist_mat[u, v] < np.inf:
                         component.append(v)
                         available[v] = True
