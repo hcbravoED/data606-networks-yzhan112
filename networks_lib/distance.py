@@ -66,7 +66,6 @@ def get_components(mat):
                         component.append(v)
                         available[v] = True
     #                    print(f'v is {v}')
-                component = np.array(component)
                 components.append(component)
     #            print(f'component is {component}')
 
