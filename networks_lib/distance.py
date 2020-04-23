@@ -55,7 +55,7 @@ def get_components(mat):
 
     components = []
 
-    while any(available):
+    while not any(available):
         for u in range(len(num_vertices)):
             if available[u] == False:
                 component = [u]
