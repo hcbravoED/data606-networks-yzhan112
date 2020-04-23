@@ -60,10 +60,15 @@ def get_components(mat):
             if available[u] == False:
                 component = [u]
                 available[u] = True
+                print(f'u is {u})')
                 for v in range(u+1, len(num_verices)):
                     if dist_mat[u, v] < np.inf:
                         component.append(v)
                         available[v] = True
+                        print(f'v is {v}')
                 components.append(component)
+                print(f'component is {component}')
+
+    print(f'components is {components}')
 
     return components
