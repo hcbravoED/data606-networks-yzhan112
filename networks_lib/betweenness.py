@@ -1,4 +1,5 @@
 import numpy as np
+from collections import deque
 
 ## TODO: Implement this function
 ##
@@ -17,12 +18,30 @@ import numpy as np
 def edge_counts(vertex, mat):
     num_vertices = mat.shape[0]
     res = np.zeros((num_vertices, num_vertices))
+    top_town = np.full(num_vertices, np.inf)
+    available = [i is not vertex for i in range(num_vertices)]
+    parent_layer = []
+    q = deque()
+    q.append((vertex, 0))
+    while not any(available):
+        v = q.popleft()
+        print(f'pop_v: {v}')
+        top_town[v[0]] += v[1]
+        print(f'top_town: {top_down}')
+        parent_layer.append(v)
+        print(f'parent_layer: {parent_layer}')
+        children_layer = np.where(mat[v[0], :] > 0)[0]
+        print(f'children_layer: {children_layer}')
+        for i in range(len(children_layer)):
+            if children_layer[i] not in parent_layer:
+                q.append((v_neighbors[i],1))
+
     return res
 
 ## Compute edge betweeness for a graph
-## 
-## Input: 
-##   - mat (np.array): n-by-n adjacency matrix. 
+##
+## Input:
+##   - mat (np.array): n-by-n adjacency matrix.
 ##
 ## Output:
 ##   (np.array): n-by-n matrix of edge betweenness
