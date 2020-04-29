@@ -71,5 +71,4 @@ def get_components(mat):
     #            print(f'component is {component}')
 
     #print(f'components is {components}')
-
     return components

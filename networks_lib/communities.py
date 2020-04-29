@@ -19,25 +19,40 @@ import math
 ## Note: Assume input matrix mat is binary and symmetric
 def girvan_newman(mat, K):
     num_vertices = mat.shape[0]
-    
+
     # make a copy of matrix since we are going
     # to update it as we remove edges
     work_mat = mat.copy()
-    
+
     components = get_components(mat)
-       
+
     while len(components) < K:
         # compute edge betweenness (one component at a time)
         eb = np.zeros((num_vertices, num_vertices))
         for vertices in components:
             cur_mat = work_mat[vertices,:][:, vertices]
             cur_eb = edge_betweenness(cur_mat)
+            #print(cur_eb)
             for i in range(len(vertices)):
                 eb[vertices[i], vertices] = cur_eb[i, :]
-                
+        #print(eb)
+        #print(work_mat)
+
         # remove edge and get components
-        # YOU NEED TO FINISH THIS PART
-        
+        remove_vertices = np.where(eb == np.amax(eb))
+        #print(remove_vertices)
+        for item in remove_vertices:
+            work_mat[item[0], item[1]] = 0
+            #print(f'work_mat: {work_mat}')
+
+        k_components = get_components(work_mat)
+        #print(f'k_components: {k_components}')
+
+        assign_list = components_to_assignment(k_components, num_vertices)
+
+#        print(assign_list)
+        return assign_list
+'''
         # These lines is for testing only, remove in your solution
         components = []
         vertices_per_component = math.ceil( num_vertices / K )
@@ -45,8 +60,9 @@ def girvan_newman(mat, K):
             start = i * vertices_per_component
             end = min(start+vertices_per_component, num_vertices-1)
             components.append(np.arange(end, start, -1))
-            
+
     return components_to_assignment(components, num_vertices)
+'''
 
 ## Turn list of components to list of assignments
 ##
@@ -62,4 +78,4 @@ def components_to_assignment(components, num_vertices):
     for vertices in components:
         assign[vertices] = cur_label
         cur_label += 1
-    return assign.tolist()
+    return assign
